@@ -1,222 +1,35 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
 <html>
-  <head>
-  	<meta charset="utf-8" />
 
-    <link rel="stylesheet" href="css/global.css" />
-  	<link rel="stylesheet" href="css/homepage.css" />
-    <link rel="stylesheet" href="css/navbar.css" />
+<head>
+    <link rel="stylesheet" type="text/css" href="style_index.css" />
+    <title> Tetris - Index </title>
+</head>
 
-    <link rel="stylesheet" href="css/homepage-media.css" />
+<body>
 
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
-    </script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
 
-  	<title>Travelocipede! </title>
+	<div>
+	<img src="moskau_tetris.png" id="moskau_tetris" />
+	<img src="moskau_tetris.png" id="moskau_tetris_droite" /> 
+	<center> <img src="tetris.jpg" id="imgTetris" /> </center>
+	 
+	</div>
+		
+		
+	<center> <h1> TETRIS </h1> </center>
+		
+		
+	 </br> 
+		
+	<center>	<p><a id="1P" href="tetris.html">1 Player Mode</a>  <a id=" 2P" href="tetris42.html">2 Players Mode</a> </p> </center>
 
-  </head>
-
-  <body>
-
-    <header>
-      <a href="index.html">
-        <img src="img/logo.png" id="img-logo" alt="Travelocipede!"/>
-        <span id="title_website">Travelocipede!</span>
-      </a>
-    </header>
-
-    <div class="navbar container-fluid">
-      <div class="navbar-inner container-fluid row">
-        <ul class="nav-large nav container-fluid">
-          <div class="row justify-content-between container-fluid">
-            <div class="col col-auto">
-              <div class="row max-height">
-                <li class="dropdown nav-link"><a class="dropdown-toggle text-yellow" data-toggle="dropdown" href="#">WHO WE ARE<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">About us</a></li>
-                    <li><a href="#">The Team</a></li>
-                    <li><a href="#">The Passion</a></li>
-                    <li><a href="#">The Community</a></li>
-                    <li><a href="#">What's included</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown nav-link"><a class="dropdown-toggle text-yellow" data-toggle="dropdown" href="#">OUR TRIPS<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Browse all trips</a></li>
-                    <li><a href="#">Historic Races</a></li>
-                    <li><a href="#">Destinations</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown nav-link"><a class="dropdown-toggle text-yellow" data-toggle="dropdown" href="#">BIKES & GEAR<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Vintage</a></li>
-                    <li><a href="#">Modern</a></li>
-                  </ul>
-                </li>
-
-                <li class="dropdown nav-link"><a class="dropdown-toggle text-yellow" data-toggle="dropdown" href="#">GALLERIES<span class="caret"></span></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#">Photos</a></li>
-                    <li><a href="#">Videos</a></li>
-                    <li><a href="#">Stories</a></li>
-                  </ul>
-                </li>
-
-              </div>
-            </div>
-
-            <div class="col col-auto">
-              <div class="row">
-
-                <li class="nav-link ">
-                  <a class="text-yellow" href="#">LOGIN</a>
-                </li>
-
-                <li class="nav-link ">
-                  <form class="navbar-form navbar-left" action="/action_page.php">
-                    <div class="input-group">
-                      <input type="text" class="searchbar" placeholder="Search">
-                      <div class="input-group-btn">
-                        <button class="btn btn-default" type="submit">
-                          <i class="fas fa-search"></i>
-                        </button>
-                      </div>
-                    </div>
-                  </form>
-                </li>
-
-              </div>
-            </div>
-          </div>
-        </ul>
-
-        <div class="nav-smalldev ">
-          <div class="row">
-            <img src="img/menu-icon.png" id="icon-menu-smalldev" onclick="displayMenuMdSm()"/>
-
-              <script>
-              function displayMenuMdSm() {
-                var menu = document.getElementById("menu-md-sm");
-                console.log(menu);
-                if (menu.style.display != "block") {
-                  menu.style.display = "block";
-                  document.getElementById("icon-menu-smalldev").style.backgroundColor = "rgb(100, 100, 100)";
-                } else {
-                  menu.style.display = "none";
-                  document.getElementById("icon-menu-smalldev").style.backgroundColor = "rgb(65, 65, 65)";
-                }
-              }
-              </script>
-
-            <li class="nav-link ">
-              <form class="navbar-form navbar-left" action="/action_page.php">
-                <div class="input-group">
-                  <input type="text" class="searchbar" placeholder="Search">
-                  <div class="input-group-btn">
-                    <button class="btn btn-default" type="submit">
-                      <i class="fas fa-search"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </li>
-
-            <li class="nav-link ">
-              <a class="text-yellow" href="#">LOGIN</a>
-            </li>
-
-          </div>
-
-        </div>
-      </div>
-
-  </div>
-
-  <div class="container-fluid" id="menu-md-sm">
-    <a href="#">
-      <div class="container-fluid text-center ">
-        <span class="nav-link-md-sm">WHO WE ARE</span>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="container-fluid text-center ">
-        <span class="nav-link-md-sm">OUR TRIPS</span>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="container-fluid text-center ">
-        <span class="nav-link-md-sm">BIKES & GEAR</span>
-      </div>
-    </a>
-
-    <a href="#">
-      <div class="container-fluid text-center ">
-        <span class="nav-link-md-sm">GALLERIES</span>
-      </div>
-    </a>
-  </div>
-
-  <div class="homepage-img-container">
-    <img src="img/dolobike-reduit.jpg" id="img-mainpage">
-    <div class="text-on-img-homepage" class="text-on-img-homepage">
-      <div id="description-img-homepage"></div>
-    </div>
-  </div>
-
-  <div class="container-fluid row justify-content-center mt-5 mb-5">
-    <div class="col-10">
-      <div class="homepage-img-container">
-        <a href="#">
-          <img class="rounded imgs" src="img\tdf74.jpg" alt="Tour de France 1974"/>
-          <div class="text-on-img-homepage" class="text-on-img-homepage">
-            <div>Experience the greatest cycling races!</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <div class="container-fluid row justify-content-center mt-5 mb-5">
-    <div class="col-10">
-      <div class="homepage-img-container">
-        <a href="destinations.html#destinations">
-          <img class="rounded imgs" src="img\discover.jpg" alt="Discover"/>
-          <div class="text-on-img-homepage" class="text-on-img-homepage">
-            <div>Discover the world with our 20+ destinations!</div>
-          </div>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <footer class="text-right pr-5">
-    <a href="#">About us </a> |
-    <a href="#"> Contact </a> |
-    <a href="#"> Copyright</a>
-  </footer>
-
-  <script type="text/javascript">
-
-  var showText = function (target, message, index, interval) {
-    if (index < message.length) {
-      $(target).append(message[index++]);
-      setTimeout(function () { showText(target, message, index, interval); }, interval);
-    }
-  }
-  $(function () {
-    showText("#description-img-homepage", "“It is by riding a bicycle that you learn the contours of a country best, since you have to sweat up the hills and coast down them.” — Ernest Hemingway", 0, 50);
-  });
-  </script>
-
-  </body>
+		<p id="names"> Razdobreev Vladimir </br>
+					   Watiez Arno</p>
+	
+</body>
 
 </html>
