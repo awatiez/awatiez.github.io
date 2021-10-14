@@ -1,0 +1,92 @@
+body
+{
+	margin: 0px 0 auto;
+	padding: 0 auto;
+	background-color: rgb(255,255,204);
+	min-width: 1280px;
+	max-width: 1500px;
+}
+
+h1
+{
+	text-align: center;
+}
+
+#content
+{
+	text-align: center;
+}
+
+h1
+{
+	font-size: 60px;
+	height: 30px;
+	margin-top: -10px;
+	text-decoration: underline;
+	font-weight: Bold;
+	font-family: Calibri;
+	color: white;
+}
+
+h2
+{
+	text-align: center;
+	background-color: rgb(200,200,200);
+	color: rgb(0,34,51);
+	font-size: 30px;
+	border: solid 2px rgb(0,34,51);
+}
+
+#t
+{
+	display: inline-block;
+	text-align: left;
+	width: 60%;
+	padding: 0px 5px 10px 5px;
+	margin-top: 10px;
+	margin-bottom: -10px;
+	border: solid 3px rgb(0,34,51);
+	border-radius: 10px 10px 0px 0px;
+	background-color: rgb(200,0,0);
+	text-align: center;
+	font-weight: Bold;
+	font-family: Calibri;
+	font-size: 60px;
+	color: white;
+	text-decoration: underline;
+}
+
+#main
+{
+	display: inline-block;
+	text-align: left;
+	width: 60%;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	padding: 5px;
+	border: solid 3px rgb(0,34,51);
+	border-radius: 0px 0px 10px 10px;
+	background-color: white;
+}
+
+.img
+{
+	height: 200px;
+	width: 300px;
+}
+
+.figure
+ {
+	float: right;
+}
+
+#citation
+{
+	margin-left: 25%;
+	width: 400px;
+	text-align: center;
+	background-color: black;
+	color: white;
+	font-size: 50px;
+	padding: 10px;
+}
