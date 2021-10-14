@@ -2,9 +2,7 @@ body
 {
 	margin: 0px 0 auto;
 	padding: 0 auto;
-	background-color: rgb(255,255,204);
-	min-width: 1280px;
-	max-width: 1500px;
+	background-color: rgb(243,242,239);
 }
 
 header
@@ -34,7 +32,7 @@ header
 	
 }
 
-#titel
+#titre
 {
 	min-width: 1000px;
 	text-align: center;
@@ -73,64 +71,4 @@ nav a:hover
 	padding-bottom: 3px;
 }
 
-h1
-{
-	text-align: center;
-}
 
-#content
-{
-	text-align: center;
-}
-
-#main
-{
-	display: inline-block;
-	text-align: left;
-	width: 60%;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	padding: 5px;
-	border: solid 3px rgb(0,34,51);
-	border-radius: 10px;
-	background-color: white;
-	padding-bottom: 20px;
-}
-
-
-#scorsese
-{
-	height: 300px;
-	width: 300px;
-	float: right;
-	margin: 0px 50px 20px 50px;
-}
-
-#aside
-{
-	position: fixed;
-	top: 116px;
-	left: 0px;
-	width: 150px;
-	height: 50px;
-	background-color: rgb(128,0,0);
-	border: solid 2px;
-	border-color: rgb(128,0,0);
-	border-radius: 0px 0px 10px 0px;
-}
-
-.follow
-{
-	float: left;
-	height: 30px;
-	width: 30px;
-	margin: 10px 5px 0px 10px;
-}
-
-#img_allocine
-{
-	float: left;
-	height: 30px;
-	width: 50px;
-	margin: 10px 5px 0px 0px ;
-}
