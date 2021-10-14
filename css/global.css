@@ -11,8 +11,7 @@ header
 	color: white;
 	padding-top: 1px;
 	padding-bottom: 15px;
-	font-size: 35px;
-	height: 60px;
+	font-size: 2vw;
 	overflow: hidden;
 	top : 0px;
 	width: 100%;
@@ -23,8 +22,8 @@ header
 	margin: 15px;
 	margin-top: 5px;
 	float: left;
-	height: 60px;
-	width: 60px;
+	height: 1vw;
+	width: 1vw;
 	border: solid white 2px;
 	border-radius: 40px ;
 	box-shadow: 6px 6px 15px black ;
@@ -37,14 +36,12 @@ header
 	min-width: 1000px;
 	text-align: center;
 	line-height:0px;
-	font-size: 40px;
 	font-weight: Bold;
 	float: left;
 }
 
 #site_officiel
 {
-	font-size: 14px;
 	font-style: italic;
 }
 
@@ -54,7 +51,6 @@ nav
 	padding: 10px 0px 10px 10px;
 	color: white;
 	text-align: center;
-	height: 20px;
 }
 
 nav a
