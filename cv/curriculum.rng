@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns="http://relaxng.org/ns/structure/1.0"
+  xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation>CVFB est un modèle minimaliste pour Curriculum Vitæ</a:documentation>
+  <start>
+    <choice>
+      <ref name="curriculum" />
+      <ref name="person" />
+    </choice>
+  </start>
+  <div>
+    <a:documentation>définitions générales</a:documentation>
+    <define name="link">
+      <a:documentation>référence à une ressource externe</a:documentation>
+      <ref name="xlink" />
+    </define>
+    <define name="xlink">
+      <interleave>
+        <attribute name="xlink:href">
+          <a:documentation>cible de lien composé d'une URI</a:documentation>
+          <data type="anyURI" />
+        </attribute>
+        <optional>
+          <attribute name="xlink:show">
+            <value>replace</value>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="xlink:type">
+            <value>simple</value>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="xlink:title">
+            <text />
+          </attribute>
+        </optional>
+      </interleave>
+    </define>
+    <define name="mixedtext">
+      <zeroOrMore>
+        <choice>
+          <text />
+          <ref name="keyref" />
+        </choice>
+      </zeroOrMore>
+    </define>
+    <define name="languages">
+      <choice>
+        <value type="string">any</value>
+        <data type="language">
+          <a:documentation>code ISO 639-2 de la langue dans laquelle est rédigé l'élément concerné</a:documentation>
+          <a:documentation>http://www.loc.gov/standards/iso639-2/php/code_list.php</a:documentation>
+        </data>
+      </choice>
+    </define>
+    <define name="orgclasses">
+      <choice>
+        <value>consortium</value>
+        <value>corporation</value>
+        <value>informal</value>
+        <value>nonprofit</value>
+      </choice>
+    </define>
+    <define name="image">
+      <attribute name="image">
+        <a:documentation>image désignée par son URI</a:documentation>
+        <a:documentation>L'image peut être une photographie, un logo, une icône, etc. Les sorties HTML et PDF reconnaissent généralement au moins les formats PNG et JPG.</a:documentation>
+        <data type="anyURI" />
+      </attribute>
+    </define>
+    <define name="xmllang">
+      <attribute name="xml:lang">
+        <a:documentation>désignation d'une langue</a:documentation>
+        <a:documentation>https://www.w3.org/TR/REC-xml/#sec-lang-tag</a:documentation>
+        <ref name="languages" />
+      </attribute>
+    </define>
+    <define name="nationality">
+      <attribute name="nation">
+        <a:documentation>nationalité</a:documentation>
+        <ref name="languages" />
+      </attribute>
+    </define>
+    <define name="profiles">
+      <attribute name="profiles">
+        <a:documentation>conditions personnalisées</a:documentation>
+        <a:documentation>Permettent notamment d'établir les règles d'affichage du contenu en sortie.</a:documentation>
+        <text />
+      </attribute>
+    </define>
+    <define name="xmlspace">
+      <attribute name="xml:space">
+        <a:documentation>préservation des caractères d'espacement</a:documentation>
+        <choice>
+          <value>preserve</value>
+          <value>default</value>
+        </choice>
+      </attribute>
+    </define>
+    <define name="dates">
+      <a:documentation>définition d'une durée d'après des dates de début et de fin</a:documentation>
+      <attribute name="start">
+        <a:documentation>date de début d'une période</a:documentation>
+        <data type="date" />
+      </attribute>
+      <optional>
+        <attribute name="end">
+          <a:documentation>date de fin d'une période</a:documentation>
+          <data type="date" />
+        </attribute>
+      </optional>
+    </define>
+    <define name="att.common">
+      <optional>
+        <ref name="profiles" />
+      </optional>
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>éléments de structure</a:documentation>
+    <define name="curriculum">
+      <element name="curriculum">
+        <a:documentation>curriculum vitæ</a:documentation>
+        <ref name="att.curriculum" />
+        <ref name="info.curriculum" />
+        <ref name="curriculum.body" />
+      </element>
+    </define>
+    <define name="info.curriculum">
+      <a:documentation>métadonnées du document</a:documentation>
+      <ref name="info" />
+      <ref name="person" />
+      <interleave>
+        <zeroOrMore>
+          <ref name="tasks" />
+        </zeroOrMore>
+        <optional>
+          <ref name="tags" />
+        </optional>
+      </interleave>
+    </define>
+    <define combine="interleave" name="att.curriculum">
+      <ref name="xmllang" />
+      <optional>
+        <ref name="profiles" />
+      </optional>
+    </define>
+    <define name="curriculum.body">
+      <a:documentation>corps du curriculum</a:documentation>
+      <a:documentation>Rassemble et intitule plusieurs expériences, tâches ou compétences.</a:documentation>
+      <oneOrMore>
+        <choice>
+          <ref name="steps" />
+          <ref name="skills" />
+          <ref name="tasks" />
+        </choice>
+      </oneOrMore>
+    </define>
+  </div>
+  <div>
+    <a:documentation>éléments informels</a:documentation>
+    <define name="info">
+      <a:documentation>méta-informations de base</a:documentation>
+      <zeroOrMore>
+        <ref name="title" />
+      </zeroOrMore>
+      <zeroOrMore>
+        <ref name="summary" />
+      </zeroOrMore>
+    </define>
+    <define name="title">
+      <element name="title">
+        <a:documentation>titre</a:documentation>
+        <a:documentation>Introduit le plus court résumé possible des informations qui suivent. Permet aussi d'indiquer l'intitulé d'un poste ou d'une formation.</a:documentation>
+        <a:documentation>voir jobtitle sur http://www.docbook.org/tdg5/en/jobtitle.html</a:documentation>
+        <ref name="att.title" />
+        <ref name="mixedtext" />
+      </element>
+    </define>
+    <define name="att.title">
+      <ref name="att.common" />
+    </define>
+    <define name="summary">
+      <element name="summary">
+        <a:documentation>résumé</a:documentation>
+        <a:documentation>Introduit une version courte ou synthétique de l'information concernée.</a:documentation>
+        <ref name="att.summary" />
+        <ref name="mixedtext" />
+      </element>
+    </define>
+    <define name="att.summary">
+      <ref name="att.common" />
+    </define>
+    <define name="tags">
+      <element name="tags">
+        <a:documentation>termes et expressions réutilisables</a:documentation>
+        <ref name="att.tags" />
+        <oneOrMore>
+          <ref name="tag" />
+        </oneOrMore>
+      </element>
+    </define>
+    <define name="att.tags">
+      <empty />
+    </define>
+    <define name="tag">
+      <element name="tag">
+        <a:documentation>étiquette réutilisable</a:documentation>
+        <a:documentation>permet éventuellement d'introduire la définition d'un terme ou d'une expression</a:documentation>
+        <ref name="att.tag" />
+        <text />
+      </element>
+    </define>
+    <define name="att.tag">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+      <optional>
+        <ref name="link" />
+      </optional>
+      <optional>
+        <attribute name="key">
+          <a:documentation>clé associée à une définition</a:documentation>
+          <text />
+        </attribute>
+      </optional>
+    </define>
+    <define name="keyref">
+      <a:documentation>référence par mot-clé</a:documentation>
+      <choice>
+        <element name="key">
+          <a:documentation>renvoi à la définition d'un terme ou d'une expression</a:documentation>
+          <ref name="att.keyref" />
+          <text />
+        </element>
+        <ref name="skill"/>
+      </choice>
+    </define>
+    <define name="att.keyref">
+      <optional>
+        <ref name="link" />
+      </optional>
+    </define>
+    <define name="name">
+      <element name="name">
+        <a:documentation>nom ou désignation</a:documentation>
+        <ref name="att.name" />
+        <text />
+      </element>
+    </define>
+    <define name="att.name">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="person">
+      <a:documentation>informations relatives à une personne</a:documentation>
+      <element name="person">
+        <ref name="att.person" />
+        <ref name="name" />
+        <interleave>
+          <zeroOrMore>
+            <ref name="status" />
+          </zeroOrMore>
+          <oneOrMore>
+            <ref name="phone" />
+          </oneOrMore>
+          <oneOrMore>
+            <ref name="email" />
+          </oneOrMore>
+          <oneOrMore>
+            <ref name="address" />
+          </oneOrMore>
+        </interleave>
+      </element>
+    </define>
+    <define name="att.person">
+      <a:documentation>informations relatives à un personne</a:documentation>
+      <ref name="nationality" />
+      <ref name="dates" />
+      <optional>
+        <ref name="link">
+          <a:documentation>site internet ou page de profil</a:documentation>
+        </ref>
+      </optional>
+      <optional>
+        <ref name="image">
+          <a:documentation>photo ou avatar</a:documentation>
+        </ref>
+      </optional>
+    </define>
+    <define name="org">
+      <element name="org">
+        <a:documentation>informations relatives à une organisation</a:documentation>
+        <ref name="att.org" />
+        <interleave>
+          <oneOrMore>
+            <ref name="name">
+              <a:documentation>raison sociale d'une organisation</a:documentation>
+            </ref>
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="task">
+              <a:documentation>activité principale d'une organisation</a:documentation>
+            </ref>
+          </zeroOrMore>
+          <oneOrMore>
+            <ref name="address" />
+          </oneOrMore>
+          <zeroOrMore>
+            <ref name="contract" />
+          </zeroOrMore>
+        </interleave>
+      </element>
+    </define>
+    <define name="att.org">
+      <optional>
+        <ref name="image">
+          <a:documentation>logotype ou représentation iconographique d'une organisation</a:documentation>
+        </ref>
+      </optional>
+      <optional>
+        <ref name="link">
+          <a:documentation>site internet d'une organisation</a:documentation>
+        </ref>
+      </optional>
+      <optional>
+        <attribute name="class">
+          <a:documentation>type d'organisation</a:documentation>
+          <ref name="orgclasses" />
+        </attribute>
+      </optional>
+    </define>
+    <define name="address">
+      <a:documentation>adresse d'une personne ou d'une organisation</a:documentation>
+      <element name="address">
+        <ref name="att.address" />
+        <choice>
+          <group>
+            <attribute name="xml:space">
+              <value>preserve</value>
+            </attribute>
+            <text />
+          </group>
+          <group>
+            <optional>
+              <attribute name="xml:space">
+                <value>default</value>
+              </attribute>
+            </optional>
+            <interleave>
+              <zeroOrMore>
+                <ref name="city" />
+              </zeroOrMore>
+              <optional>
+                <ref name="street" />
+              </optional>
+              <zeroOrMore>
+                <ref name="country" />
+              </zeroOrMore>
+              <optional>
+                <ref name="postcode" />
+              </optional>
+            </interleave>
+          </group>
+        </choice>
+      </element>
+    </define>
+    <define name="att.address">
+      <ref name="att.common" />
+    </define>
+    <define name="email">
+      <element name="email">
+        <a:documentation>adresse électronique</a:documentation>
+        <ref name="att.email" />
+        <text />
+      </element>
+    </define>
+    <define name="att.email">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="street">
+      <element name="street">
+        <a:documentation>nom et numéro d'une rue</a:documentation>
+        <ref name="att.street" />
+        <text />
+      </element>
+    </define>
+    <define name="att.street">
+      <empty />
+    </define>
+    <define name="postcode">
+      <element name="postcode">
+        <a:documentation>code postal</a:documentation>
+        <ref name="att.postcode" />
+        <text />
+      </element>
+    </define>
+    <define name="att.postcode">
+      <empty />
+    </define>
+    <define name="status">
+      <element name="status">
+        <a:documentation>statut marital</a:documentation>
+        <ref name="att.status" />
+        <text />
+      </element>
+    </define>
+    <define name="att.status">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="city">
+      <element name="city">
+        <a:documentation>ville</a:documentation>
+        <ref name="att.city" />
+        <text />
+      </element>
+    </define>
+    <define name="att.city">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="country">
+      <element name="country">
+        <a:documentation>pays</a:documentation>
+        <ref name="att.country" />
+        <text />
+      </element>
+    </define>
+    <define name="att.country">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="att.contract">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+    <define name="phone">
+      <element name="phone">
+        <a:documentation>numéro de téléphone</a:documentation>
+        <ref name="att.phone" />
+        <text />
+      </element>
+    </define>
+    <define name="att.phone">
+      <optional>
+        <ref name="xmllang" />
+      </optional>
+    </define>
+  </div>
+  <div>
+    <a:documentation>éléments de contenu</a:documentation>
+    <define name="steps">
+      <element name="steps">
+        <a:documentation>ensemble d'étapes ou expériences</a:documentation>
+        <ref name="att.steps" />
+        <ref name="info.steps" />
+        <zeroOrMore>
+          <ref name="step" />
+        </zeroOrMore>
+      </element>
+    </define>
+    <define name="att.steps">
+      <ref name="att.common" />
+    </define>
+    <define name="info.steps">
+      <ref name="info" />
+    </define>
+    <define name="step">
+      <element name="step">
+        <a:documentation>étape ou expérience</a:documentation>
+        <ref name="att.step" />
+        <ref name="info.step" />
+        <zeroOrMore>
+          <ref name="tasks" />
+        </zeroOrMore>
+      </element>
+    </define>
+    <define name="info.step">
+      <ref name="org" />
+    </define>
+    <define name="att.step">
+      <ref name="att.common" />
+      <ref name="dates" />
+    </define>
+    <define name="contract">
+      <element name="contract">
+        <a:documentation>nature du contrat établit avec l'organisation concernée</a:documentation>
+        <ref name="att.contract" />
+        <text />
+      </element>
+    </define>
+    <define name="skills">
+      <element name="skills">
+        <a:documentation>ensemble ou sous-ensemble de compétences</a:documentation>
+        <ref name="att.skills" />
+        <ref name="info.skills" />
+        <optional>
+          <choice>
+            <oneOrMore>
+              <ref name="skill" />
+            </oneOrMore>
+            <oneOrMore>
+              <ref name="skills" />
+            </oneOrMore>
+          </choice>
+        </optional>
+      </element>
+    </define>
+    <define name="info.skills">
+      <ref name="info" />
+    </define>
+    <define name="att.skills">
+      <ref name="att.common" />
+    </define>
+    <define name="skill">
+      <element name="skill">
+        <a:documentation>compétence</a:documentation>
+        <ref name="att.skill" />
+        <text />
+        <optional>
+          <ref name="skills" />
+        </optional>
+      </element>
+    </define>
+    <define name="att.skill">
+      <ref name="att.common" />
+      <optional>
+        <ref name="link" />
+      </optional>
+    </define>
+    <define name="tasks">
+      <element name="tasks">
+        <a:documentation>ensemble de tâches ou activités</a:documentation>
+        <ref name="att.tasks" />
+        <ref name="info.tasks" />
+        <zeroOrMore>
+          <ref name="task" />
+        </zeroOrMore>
+      </element>
+    </define>
+    <define name="att.tasks">
+      <ref name="att.common" />
+    </define>
+    <define name="info.tasks">
+      <ref name="info" />
+    </define>
+    <define name="task">
+      <element name="task">
+        <a:documentation>tâche ou activité</a:documentation>
+        <a:documentation>unité essentielle identifiable d'un travail, utilisée par extension pour différencier les composantes d'un projet</a:documentation>
+        <a:documentation>voir définition sur http://www.businessdictionary.com/definition/task.html</a:documentation>
+        <ref name="att.task" />
+        <ref name="mixedtext" />
+        <optional>
+          <ref name="tasks" />
+        </optional>
+      </element>
+    </define>
+    <define name="att.task">
+      <ref name="att.common" />
+    </define>
+  </div>
+</grammar>
