@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+			body {
+				margin:0;
+				position:relative;
+				width:100vw;
+				height:100vh;
+				 https://cssgradient.io/gradient-backgrounds/ 
+				background-color: #D9AFD9;
+				background-image: linear-gradient(0deg, #122170 0%, #000 100%);
+			}
+			
+			#envelope {
+				position:absolute;
+				top: calc(50vh - 200px);
+				left: calc(50vw - 150px);
+				width:300px;
+				height:300px;
+			}
+			
+			#envelope > * {
+				position:absolute;
+				top: 0;
+				left: 0;
+				display:none;
+			}
+			
+			#back {
+				display:block;
+				z-index:0;
+			}
+			
+			#front {
+				display:block;
+				z-index:10;
+			}
+			
+			#top {
+				display:block;
+				z-index:11;
+			}
+			
+			#top.animate, #front.animate, #back.animate, #envelope button.animate { 
+				opacity:0;
+				transition: opacity 1s;
+				transition-delay: 1s;
+			}
+			
+			#letter {
+				display:flex;
+				flex-direction:column;
+				justify-content:space-around;
+				align-items:center;
+				background-color: white;
+				padding:10px;
+				z-index:5;
+				left:15px;
+				right:15px;
+				bottom:5px;
+				top:105px;
+				/* https://boxshadows.com/presets */
+				box-shadow:0px 1px 3px 0px rgba(0,0,0,0.1) , 0px 1px 2px 0px rgba(0,0,0,0.06) ;
+				overflow:hidden;
+				font-size:8px;
+				
+			}
+			
+			#letter.animate {
+				animation:makebig 2s forwards; 
+				animation-delay: 1s;
+			}
+			
+			@keyframes makebig {
+				0% { top: 105px; left: 15px; right: 15px; bottom: 5px; font-size:8px;}
+				33% { top: -100px; left: 15px; right: 15px; bottom: 150px; font-size:8px; }
+				100% { top: -100px; left: -25px; right: -25px; bottom: -100px;font-size: 12px; }
+			}
+			
+			
+			#letter h1 {
+				font-size:inherit;
+			}
+			
+			#letter h2 {
+				font-size:inherit;
+			}
+			
+			#letter img {
+				height:40%;
+			}
+			
+			#envelope button {
+				display:block;
+				z-index:15;
+				width:50px;
+				height:50px;
+				border-radius:50%;
+				border:none;
+				background-color:green;
+				font-weight:bold;
+				text-align: center;
+				color:white;
+				cursor:pointer;
+				top:calc(200px - 25px);
+				left:calc(150px - 25px);
+				transition: transform 1s, background-color 1s, color 1s;
+			}
+			
+			#envelope button:hover {
+				background-color:red;
+				transform:scale(1.5);
+				color: black;
+				transition: transform 1s, background-color 1s, color 1s;
+			}
+		</style>
+		<script>
+			function openUp() {
+				const $opentop= document.querySelector('#opentop');
+				const $top= document.querySelector('#top');
+				const $front= document.querySelector('#front');
+				const $back= document.querySelector('#back');
+				const $letter= document.querySelector('#letter');
+				const $button= document.querySelector('button');
+				
+				$opentop.beginElement();
+				$top.style.zIndex = 2;
+				
+				$top.classList.add('animate');
+				$front.classList.add('animate');
+				$back.classList.add('animate');
+				$button.classList.add('animate');
+				$letter.classList.add('animate');
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id='envelope'>
+			<div id='back'>
+				<svg xmlns="http://www.w3.org/2000/svg" 
+					xmlns:xlink= "http://www.w3.org/1999/xlink" 
+					height="300" width="300">
+					<polygon
+						points="0,100 300,100 300,300 0,300"
+						style="fill:#e6cfa7;stroke:none;stroke-width:0" />
+				</svg>
+			</div>
+			<div id='front'>
+				<svg xmlns="http://www.w3.org/2000/svg" 
+					xmlns:xlink= "http://www.w3.org/1999/xlink" 
+					height="300" width="300">
+
+					<polygon
+						points="0,100 150,200 300,100 300,300 0,300"
+						style="fill:#e6cfa7; stroke:#e6cfa7; stroke-width:3" />
+
+				</svg>
+			</div>
+			<div id='top'>
+				<svg xmlns="http://www.w3.org/2000/svg" 
+					xmlns:xlink= "http://www.w3.org/1999/xlink" 
+					height="300" width="300">
+					
+					<polygon
+						points="0,100 150,200 300,100"
+						style="fill:#ecdeb8;stroke:#ecdeb8;stroke-width:2">
+						<animate id='opentop' attributeName="points" dur="0.5s" fill="freeze" 
+						begin="indefinite"
+				              from="0,100 150,200 300,100"
+				              to="0,100 150,0 300,100"/>
+					</polygon>
+					
+				</svg>
+			</div>
+			<div id='letter'>
+				<h1>Bonne fête papa!</h1>
+				<img src='DSCF8086.jpg'>
+				<p>J'espère que tu passes une bonne journée, un bon dimanche midi (à la cantine bretonne?), et que tout va bien!</p>
+				<p>J'ai hâte d'aller à Manthelan avec toi jeudi, on va se faire plais'! </p>
+				<p>Tu es un papa incroyable et j'espère que tes enfants, les grands et les moins grands te le rendent bien!</p>
+				<p>J'adore quand tu me parles de vieux matchs de tennis, quand tu racontes des anecdotes à propos
+					d'acteur franchouillards, ou quand tu prônes l'union de la gauche en combo mocassins/polo!</p>
+				<p>Tu es un exemple pour moi et pour les autres mioches que t'as fait naître !</p>
+				<p>Merci d'être là papa, je t'aime fort !</p>
+				<h2 style="text-align:right">Arno</h2>
+			</div>
+			<button onclick='openUp()'>
+				Ouvre-moi!
+			</button>
+		</div>
+		
+
+	</body>
+</html>
